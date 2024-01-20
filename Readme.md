@@ -11,11 +11,13 @@ This repository contains the code-implementation of concepts taught in the COE 3
 1. To get started with this repository, follow these steps:
     Clone the repository to your local machine using the following command:
 
-```git clone https://github.com/jdboachie/object-oriented-programming.git```
+```bash
+    git clone https://github.com/gyauelvis/microprocessors-in-code.git
+```
 
 2. Familiarize yourself with the repository structure and its purpose. This will help you understand how to organize and contribute your own code effectively.
 
-    If you would like to contribute to existing code, review the CONTRIBUTING.md file for guidelines on submitting contributions.
+3. If you would like to contribute to existing code, review the CONTRIBUTING.md file for guidelines on submitting contributions.
 
-    Explore the existing projects and assignments shared by others. Feel free to provide feedback, suggestions, or improvements through issues or pull requests.
+4. Explore the existing projects and assignments shared by others. Feel free to provide feedback, suggestions, or improvements through issues or pull requests.
 
