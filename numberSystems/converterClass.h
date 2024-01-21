@@ -10,7 +10,8 @@ protected:
 public:
     numberConverter(int new_number = 0);
     void setNumber(int new_number);
-    void toArray();
+    // the outlaw argument is the least possible number that cannot be contained in the number system
+    void toArray(int outlaw);
     void printArray() const;
 };
 
@@ -18,9 +19,9 @@ void numberConverter::setNumber(int new_number)
 {
     number = new_number;
 };
-numberConverter::numberConverter(int new_number = 0) : number(new_number){};
+numberConverter::numberConverter(int new_number) : number(new_number){};
 
-void numberConverter::toArray()
+void numberConverter::toArray(int outlaw)
 {
     int i = number;
     while (i > 0)
@@ -28,7 +29,7 @@ void numberConverter::toArray()
         try
         {
             int j = i % 10;
-            if (j >= 2)
+            if (j >= outlaw)
             {
                 throw std::string("Invalid binary number");
             }
@@ -55,7 +56,7 @@ void numberConverter::printArray() const
 class binaryToDecimal : public numberConverter
 {
 public:
-    binaryToDecimal(int new_number = 0);
+    binaryToDecimal(int new_number);
     int toBinary();
 };
 
@@ -66,6 +67,7 @@ binaryToDecimal::binaryToDecimal(int new_number = 0)
 
 int binaryToDecimal::toBinary()
 {
+    this->toArray(2);
     int answer = 0;
     for (int i = 0; i < numberArray.size(); i++)
     {
@@ -75,13 +77,30 @@ int binaryToDecimal::toBinary()
     return answer;
 }
 
+class decimalToBinary : public numberConverter
+{
+private:
+    std::vector<int> binaryArray;
 
-class decimalToBinary : public numberConverter{
-    public:
-        decimalToBinary(int new_number = 0){
-            this->number = new_number;
-        };
-        int toDecimal(){
-            toArray();
-        };
+public:
+    decimalToBinary(int new_number = 0)
+    {
+        this->number = new_number;
+    };
+    void toDecimal()
+    {
+        this->toArray(10);
+        int quotient = this->number, remainder;
+        while (quotient > 0)
+        {
+            remainder = quotient % 2;
+            binaryArray.insert(binaryArray.begin(), remainder);
+            quotient /= 2;
+        }
+        for(int i = 0; i < binaryArray.size(); i++){
+            std::cout << binaryArray[i];
+        }
+        std::cout << std::endl;
+    };
+    
 };
