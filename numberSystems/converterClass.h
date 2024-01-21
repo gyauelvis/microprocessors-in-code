@@ -46,7 +46,7 @@ void numberConverter::toArray(int outlaw)
 
 void numberConverter::printArray() const
 {
-    for (int i = 0; i < numberArray.size(); i++)
+    for (int i = 0; i < static_cast<int>(numberArray.size()); i++)
     {
         std::cout << i << ":" << (numberArray[i]);
         std::cout << std::endl;
@@ -57,7 +57,7 @@ class binaryToDecimal : public numberConverter
 {
 public:
     binaryToDecimal(int new_number);
-    int toBinary();
+    int toBinary(int radix);
 };
 
 binaryToDecimal::binaryToDecimal(int new_number = 0)
@@ -65,13 +65,13 @@ binaryToDecimal::binaryToDecimal(int new_number = 0)
     this->number = new_number;
 };
 
-int binaryToDecimal::toBinary()
+int binaryToDecimal::toBinary(int radix = 2)
 {
     this->toArray(2);
     int answer = 0;
-    for (int i = 0; i < numberArray.size(); i++)
+    for (int i = 0; i < static_cast<int>(numberArray.size()); i++)
     {
-        answer += numberArray[i] * pow(2, i);
+        answer += numberArray[i] * pow(radix, i);
     }
 
     return answer;
@@ -97,10 +97,18 @@ public:
             binaryArray.insert(binaryArray.begin(), remainder);
             quotient /= 2;
         }
-        for(int i = 0; i < binaryArray.size(); i++){
+        for(int i = 0; i < static_cast<int>(binaryArray.size()); i++){
             std::cout << binaryArray[i];
         }
         std::cout << std::endl;
     };
     
+};
+
+class octalToDecimal :public binaryToDecimal {
+    public:
+    octalToDecimal(int new_number = 0)
+    {
+        this->number = new_number;
+    };
 };
