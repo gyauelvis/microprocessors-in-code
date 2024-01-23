@@ -4,7 +4,7 @@
 int main(){
     int num;
     std::cin >> num;
-    octalToDecimal c(num); 
-    std::cout<<c.toDecimal(8)<<std::endl;
+    octalToBinary c(num); 
+    c.toBinary();
     return 0;
 }

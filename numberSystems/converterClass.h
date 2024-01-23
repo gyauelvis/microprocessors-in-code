@@ -31,7 +31,7 @@ void numberConverter::toArray(int outlaw)
             int j = i % 10;
             if (j >= outlaw)
             {
-                throw std::string("Invalid binary number");
+                throw std::string("Invalid conversion");
             }
             numberArray.push_back(j);
             i /= 10;
@@ -111,5 +111,22 @@ class octalToDecimal :public binaryToDecimal {
     {
         this->number = new_number;
     };
+};
+
+class octalToBinary: public numberConverter{
+    private:
+    binaryToDecimal convertToDecimal;
+    decimalToBinary convertToBinary;
+
+    public:
+    octalToBinary (int new_number = 0){
+        this->number = new_number;
+        convertToDecimal.setNumber(new_number);
+    }
+    void toBinary(){
+        int decimal_equi = convertToDecimal.toDecimal(8);
+        convertToBinary.setNumber(decimal_equi);
+        convertToBinary.toBinary();
+    }
 };
 
