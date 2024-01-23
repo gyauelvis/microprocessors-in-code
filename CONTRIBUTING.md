@@ -9,16 +9,10 @@ Welcome to the Microprocessors (381) in Code repository! We appreciate your inte
 2. Clone the forked repository to your local machine:
 
     ```bash
-    git clone https://github.com/gyauelvis/microprocessors-in-code.git
+    git clone https://github.com/[your-username]/microprocessors-in-code.git
     ```
 
-3. Create a new branch for your contribution:
-
-    ```bash
-        git checkout -b feature-name
-    ```
-
-4. Make your changes and commit them with clear and concise messages:
+3. Make your changes and commit them with clear and concise messages:
 
     ```bash
     git add .
@@ -28,7 +22,7 @@ Welcome to the Microprocessors (381) in Code repository! We appreciate your inte
 5. Push your changes to your forked repository:
 
     ```bash
-    git push origin feature-name
+    git push origin branch-name
     ```
 
 6. Create a pull request (PR) from your forked repository to the main repository.
@@ -41,6 +35,8 @@ Welcome to the Microprocessors (381) in Code repository! We appreciate your inte
 
 - Ensure that your code is organized within the appropriate folders.
 - Create new folders if needed and follow a logical structure.
+- Folders will created for each concept. 
+- Name your files appropriately in the correct directories. 
 
 ## Code Style
 
@@ -55,7 +51,6 @@ Welcome to the Microprocessors (381) in Code repository! We appreciate your inte
 
 
 ## Issues
-
 - Feel free to open issues for bug reports, feature requests, or general feedback.
 - Clearly describe the issue or enhancement you're suggesting.
 
