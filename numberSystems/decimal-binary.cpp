@@ -5,6 +5,6 @@ int main(){
     int num;
     std::cin >> num;
     octalToDecimal c(num); 
-    std::cout<<c.toBinary(8)<<std::endl;
+    std::cout<<c.toDecimal(8)<<std::endl;
     return 0;
 }

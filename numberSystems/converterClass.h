@@ -57,7 +57,7 @@ class binaryToDecimal : public numberConverter
 {
 public:
     binaryToDecimal(int new_number);
-    int toBinary(int radix);
+    int toDecimal(int radix);
 };
 
 binaryToDecimal::binaryToDecimal(int new_number = 0)
@@ -65,9 +65,9 @@ binaryToDecimal::binaryToDecimal(int new_number = 0)
     this->number = new_number;
 };
 
-int binaryToDecimal::toBinary(int radix = 2)
+int binaryToDecimal::toDecimal(int radix = 2)
 {
-    this->toArray(2);
+    this->toArray(radix);
     int answer = 0;
     for (int i = 0; i < static_cast<int>(numberArray.size()); i++)
     {
@@ -87,7 +87,7 @@ public:
     {
         this->number = new_number;
     };
-    void toDecimal()
+    void toBinary()
     {
         this->toArray(10);
         int quotient = this->number, remainder;
@@ -112,3 +112,4 @@ class octalToDecimal :public binaryToDecimal {
         this->number = new_number;
     };
 };
+
