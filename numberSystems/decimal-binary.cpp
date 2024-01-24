@@ -1,10 +1,10 @@
 #include <iostream>
-#include "converterClass.h"
+#include "numberConversion.h"
 
 int main(){
     int num;
     std::cin >> num;
-    octalToBinary c(num); 
-    c.toBinary();
+    toBinarySystem c(num);
+    c.toBinary(2, 10);
     return 0;
 }

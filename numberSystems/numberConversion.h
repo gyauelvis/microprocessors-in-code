@@ -5,21 +5,23 @@ class numberConverter
 {
 protected:
     std::vector<int> numberArray;
-    int number;
+    std::string number;
 
 public:
-    numberConverter(int new_number = 0);
-    void setNumber(int new_number);
+    numberConverter(std::string new_number = "");
+    void setNumber(std::string new_number);
     // the outlaw argument is the least possible number that cannot be contained in the number system
     void toArray(int outlaw);
     void printArray() const;
 };
 
-void numberConverter::setNumber(int new_number)
+void numberConverter::setNumber(std::string new_number)
 {
     number = new_number;
 };
-numberConverter::numberConverter(int new_number) : number(new_number){};
+
+
+numberConverter::numberConverter(std::string new_number) : number(new_number){};
 
 void numberConverter::toArray(int outlaw)
 {
@@ -53,19 +55,21 @@ void numberConverter::printArray() const
     }
 }
 
-class binaryToDecimal : public numberConverter
+//class that converts any number system to decimal number
+
+class toDecimalSystem : public numberConverter
 {
 public:
-    binaryToDecimal(int new_number);
+    toDecimalSystem(int new_number);
     int toDecimal(int radix);
 };
 
-binaryToDecimal::binaryToDecimal(int new_number = 0)
+toDecimalSystem::toDecimalSystem(int new_number = 0)
 {
     this->number = new_number;
 };
 
-int binaryToDecimal::toDecimal(int radix = 2)
+int toDecimalSystem::toDecimal(int radix = 2)
 {
     this->toArray(radix);
     int answer = 0;
@@ -73,29 +77,29 @@ int binaryToDecimal::toDecimal(int radix = 2)
     {
         answer += numberArray[i] * pow(radix, i);
     }
-
     return answer;
 }
 
-class decimalToBinary : public numberConverter
+class toBinarySystem : public numberConverter
 {
 private:
     std::vector<int> binaryArray;
-
+    toDecimalSystem value;
 public:
-    decimalToBinary(int new_number = 0)
+    toBinarySystem(int new_number = 0)
     {
         this->number = new_number;
     };
-    void toBinary()
+    void toBinary(int fromRadix, int toRadix)
     {
-        this->toArray(10);
-        int quotient = this->number, remainder;
+        this->toArray(fromRadix);
+        value.setNumber(this->number);
+        int quotient = value.toDecimal(fromRadix), remainder;
         while (quotient > 0)
         {
-            remainder = quotient % 2;
+            remainder = quotient % toRadix;
             binaryArray.insert(binaryArray.begin(), remainder);
-            quotient /= 2;
+            quotient /= toRadix;
         }
         for(int i = 0; i < static_cast<int>(binaryArray.size()); i++){
             std::cout << binaryArray[i];
@@ -104,30 +108,3 @@ public:
     };
     
 };
-
-class octalToDecimal :public binaryToDecimal {
-    public:
-    octalToDecimal(int new_number = 0)
-    {
-        this->number = new_number;
-    };
-};
-
-class octalToBinary: public numberConverter{
-    private:
-    binaryToDecimal convertToDecimal;
-    decimalToBinary convertToBinary;
-
-    public:
-    octalToBinary (int new_number = 0){
-        this->number = new_number;
-        convertToDecimal.setNumber(new_number);
-    }
-    void toBinary(){
-        int decimal_equi = convertToDecimal.toDecimal(8);
-        convertToBinary.setNumber(decimal_equi);
-        convertToBinary.toBinary();
-    }
-};
-
-
