@@ -1,7 +1,8 @@
 #include <iostream>
 #include "numberConversion.h"
 
-int main(){
+int main()
+{
     std::string num;
     std::cin >> num;
     toBinarySystem c(num);
