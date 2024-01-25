@@ -2,9 +2,9 @@
 #include "numberConversion.h"
 
 int main(){
-    int num;
+    std::string num;
     std::cin >> num;
     toBinarySystem c(num);
-    c.toBinary(2, 10);
+    c.toBinary(16, 2);
     return 0;
 }

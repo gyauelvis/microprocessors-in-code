@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <unordered_map>
 
 class numberConverter
 {
@@ -8,42 +9,43 @@ protected:
     std::string number;
 
 public:
-    numberConverter(std::string new_number = "");
-    void setNumber(std::string new_number);
+    numberConverter(std::string new_number = "") : number(new_number){};
+    void setNumber(std::string new_number)
+    {
+        this->number = new_number;
+    };
     // the outlaw argument is the least possible number that cannot be contained in the number system
     void toArray(int outlaw);
     void printArray() const;
 };
 
-void numberConverter::setNumber(std::string new_number)
-{
-    number = new_number;
-};
-
-
-numberConverter::numberConverter(std::string new_number) : number(new_number){};
-
 void numberConverter::toArray(int outlaw)
 {
-    int i = number;
-    while (i > 0)
+    std::unordered_map<char, int> hexNumberMap;
+    hexNumberMap.insert(std::pair<char, int>('A', 10));
+    hexNumberMap.insert(std::pair<char, int>('B', 11));
+    hexNumberMap.insert(std::pair<char, int>('C', 12));
+    hexNumberMap.insert(std::pair<char, int>('D', 13));
+    hexNumberMap.insert(std::pair<char, int>('E', 14));
+    hexNumberMap.insert(std::pair<char, int>('F', 15));
+    std::string num = number;
+    for (int i = 0; i < static_cast<int>(num.length()); i++)
     {
-        try
+        if ((hexNumberMap[num[i]] != 0))
+            numberArray.push_back(hexNumberMap[num[i]]);
+        else
         {
-            int j = i % 10;
-            if (j >= outlaw)
+            int value = static_cast<int>(num[i]) - static_cast<int>('0');
+            try
             {
-                throw std::string("Invalid conversion");
+                (value < outlaw) ? numberArray.push_back(value) : throw std::string("Invalid number");
             }
-            numberArray.push_back(j);
-            i /= 10;
+            catch (std::string err)
+            {
+                std::cout << err;
+            }
         }
-        catch (std::string error)
-        {
-            std::cout << error << std::endl;
-            exit(0);
-        }
-    }
+    };
 }
 
 void numberConverter::printArray() const
@@ -55,16 +57,16 @@ void numberConverter::printArray() const
     }
 }
 
-//class that converts any number system to decimal number
+// class that converts any number system to decimal number
 
 class toDecimalSystem : public numberConverter
 {
 public:
-    toDecimalSystem(int new_number);
+    toDecimalSystem(std::string new_number);
     int toDecimal(int radix);
 };
 
-toDecimalSystem::toDecimalSystem(int new_number = 0)
+toDecimalSystem::toDecimalSystem(std::string new_number = "")
 {
     this->number = new_number;
 };
@@ -85,8 +87,9 @@ class toBinarySystem : public numberConverter
 private:
     std::vector<int> binaryArray;
     toDecimalSystem value;
+
 public:
-    toBinarySystem(int new_number = 0)
+    toBinarySystem(std::string new_number = "")
     {
         this->number = new_number;
     };
@@ -101,10 +104,10 @@ public:
             binaryArray.insert(binaryArray.begin(), remainder);
             quotient /= toRadix;
         }
-        for(int i = 0; i < static_cast<int>(binaryArray.size()); i++){
+        for (int i = 0; i < static_cast<int>(binaryArray.size()); i++)
+        {
             std::cout << binaryArray[i];
         }
         std::cout << std::endl;
     };
-    
 };
