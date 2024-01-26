@@ -21,6 +21,7 @@ public:
 
 void numberConverter::toArray(int outlaw)
 {
+
     std::unordered_map<char, int> hexNumberMap;
     hexNumberMap.insert(std::pair<char, int>('A', 10));
     hexNumberMap.insert(std::pair<char, int>('B', 11));
@@ -74,26 +75,28 @@ toDecimalSystem::toDecimalSystem(std::string new_number = "")
 int toDecimalSystem::toDecimal(int radix = 2)
 {
     this->toArray(radix);
-    int answer = 0;
-    for (int i = 0; i < static_cast<int>(numberArray.size()); i++)
+    int answer = 0, exponent = 0;
+    for (int i = static_cast<int>(numberArray.size()) - 1; i >= 0; i--)
     {
-        answer += numberArray[i] * pow(radix, i);
+        answer += numberArray[i] * pow(radix, exponent);
+        exponent++;
     }
+    numberArray.clear();
     return answer;
 }
 
-class toBinarySystem : public numberConverter
+class toAnyOtherSystem : public numberConverter
 {
 private:
     std::vector<int> binaryArray;
     toDecimalSystem value;
 
 public:
-    toBinarySystem(std::string new_number = "")
+    toAnyOtherSystem(std::string new_number = "")
     {
         this->number = new_number;
     };
-    void toBinary(int fromRadix, int toRadix)
+    void toAny(int fromRadix, int toRadix)
     {
         this->toArray(fromRadix);
         value.setNumber(this->number);
@@ -109,5 +112,6 @@ public:
             std::cout << binaryArray[i];
         }
         std::cout << std::endl;
+        binaryArray.clear();
     };
 };
