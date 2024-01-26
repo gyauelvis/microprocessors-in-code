@@ -21,7 +21,6 @@ public:
 
 void numberConverter::toArray(int outlaw)
 {
-
     std::unordered_map<char, int> hexNumberMap;
     hexNumberMap.insert(std::pair<char, int>('A', 10));
     hexNumberMap.insert(std::pair<char, int>('B', 11));
@@ -98,6 +97,14 @@ public:
     };
     void toAny(int fromRadix, int toRadix)
     {
+        std::unordered_map<int, char> hexNumberMap;
+        hexNumberMap.insert(std::pair<int, char>(10, 'A'));
+        hexNumberMap.insert(std::pair<int, char>(11, 'B'));
+        hexNumberMap.insert(std::pair<int, char>(12, 'C'));
+        hexNumberMap.insert(std::pair<int, char>(13, 'D'));
+        hexNumberMap.insert(std::pair<int, char>(14, 'E'));
+        hexNumberMap.insert(std::pair<int, char>(15, 'F'));
+
         this->toArray(fromRadix);
         value.setNumber(this->number);
         int quotient = value.toDecimal(fromRadix), remainder;
@@ -109,7 +116,7 @@ public:
         }
         for (int i = 0; i < static_cast<int>(binaryArray.size()); i++)
         {
-            std::cout << binaryArray[i];
+            (binaryArray[i] >= 10) ? std::cout << hexNumberMap[binaryArray[i]] : std::cout << binaryArray[i];
         }
         std::cout << std::endl;
         binaryArray.clear();

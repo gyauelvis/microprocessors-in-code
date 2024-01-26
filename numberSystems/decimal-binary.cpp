@@ -7,6 +7,7 @@ int main()
     std::cout << "----------------------------------------------------------------" << std::endl
               << std::endl;
     bool isDone = false;
+    std::string exit;
     toDecimalSystem convertToDecimal;
     toAnyOtherSystem convertToAny;
     std::string number;
@@ -36,5 +37,9 @@ int main()
                 convertToAny.toAny(prevBase, toBase);
             }
         }
+
+        std::cout <<std::endl<< "Would you like to convert another number? (y/n): ";
+        std::cin >> exit;
+        (exit == "y")?isDone = false: isDone = true;
     } while (!isDone);
 }
