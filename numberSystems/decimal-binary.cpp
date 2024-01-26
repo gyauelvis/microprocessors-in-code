@@ -3,46 +3,64 @@
 
 int main()
 {
-    std::cout << "Number Conversion Console Application" << std::endl;
-    std::cout << "----------------------------------------------------------------" << std::endl
+    std::cout << "Welcome to the Number Conversion Console Application" << std::endl;
+    std::cout << "----------------------------------------------------" << std::endl
               << std::endl;
+
     bool isDone = false;
     std::string exit;
     toDecimalSystem convertToDecimal;
     toAnyOtherSystem convertToAny;
-    std::string number;
-    int prevBase, toBase;
+
     do
     {
-        std::cout << "Enter the radix of the number you want to convert: ";
+        std::cout << "Enter the base of the number you want to convert: ";
+        int prevBase;
         std::cin >> prevBase;
-        std::cout << "Enter your the Number you want to Convert: ";
-        std::cin >> number;
-        std::cout << "Enter the radix you want to convert the number to: ";
-        std::cin >> toBase;
-        if (!std::cin)
+
+        if (!std::cin || prevBase <= 1 || prevBase > 16)
         {
-            std::cout << ("Invalid Argument") << std::endl;
+            std::cout << "Invalid base. Please enter a valid base between 2 and 16." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        std::cout << "Enter the number you want to convert: ";
+        std::string number;
+        std::cin >> number;
+
+        std::cout << "Enter the base you want to convert the number to: ";
+        int toBase;
+        std::cin >> toBase;
+
+        if (!std::cin || toBase <= 1 || toBase > 16)
+        {
+            std::cout << "Invalid base. Please enter a valid base between 2 and 16." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (toBase == 10)
+        {
+            convertToDecimal.setNumber(number);
+            std::cout << "Decimal equivalent: " << convertToDecimal.toDecimal(prevBase) << std::endl;
         }
         else
         {
-            if (toBase == 10)
-            {
-                convertToDecimal.setNumber(number);
-                std::cout << convertToDecimal.toDecimal(prevBase) << std::endl;
-            }
-            else
-            {
-                convertToAny.setNumber(number);
-                convertToAny.toAny(prevBase, toBase);
-            }
+            convertToAny.setNumber(number);
+            convertToAny.toAny(prevBase, toBase);
         }
 
         std::cout << std::endl
-                  << "Would you like to convert another number? (y/n): ";
+                  << "Do you want to convert another number? (yes/no): ";
         std::cin >> exit;
-        (exit == "y") ? isDone = false : isDone = true;
+        isDone = (exit != "yes" && exit != "y");
+
     } while (!isDone);
+
+    std::cout << "Thank you for using the Number Conversion Console Application. Goodbye!" << std::endl;
+
+    return 0;
 }
