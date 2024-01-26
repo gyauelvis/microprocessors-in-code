@@ -32,14 +32,17 @@ int main()
             {
                 convertToDecimal.setNumber(number);
                 std::cout << convertToDecimal.toDecimal(prevBase) << std::endl;
-            }else{
+            }
+            else
+            {
                 convertToAny.setNumber(number);
                 convertToAny.toAny(prevBase, toBase);
             }
         }
 
-        std::cout <<std::endl<< "Would you like to convert another number? (y/n): ";
+        std::cout << std::endl
+                  << "Would you like to convert another number? (y/n): ";
         std::cin >> exit;
-        (exit == "y")?isDone = false: isDone = true;
+        (exit == "y") ? isDone = false : isDone = true;
     } while (!isDone);
 }
