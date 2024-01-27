@@ -34,7 +34,8 @@ Welcome to the Microprocessors (381) in Code repository! We appreciate your inte
 ## Folder Structure
 
 - Ensure that your code is organized within the appropriate folders.
-- Create new folders if needed and follow a logical structure.
+- In the appropriate concept folder, create folder and give it your [name]_[the language you are using]
+- Eg. If you are called Elvis and you are the implementing number conversion in C++, create your folder in the `numberSystems` directory and give your folder the name `Elvis__Cpp`
 - Folders will created for each concept. 
 - Name your files appropriately in the correct directories. 
 
