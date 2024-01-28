@@ -1,6 +1,6 @@
-# Function that converts a decimal integer to a binary integer using recurssion.
+# Function that converts a decimal integer to a binary integer using recursion.
 # I should probably have handled decimal fractions as well, but for the sake of ... 
-# ... how elegent the below solution is I am going to leave it and implement a complete solution ... 
+# ... how elegant the below solution is I am going to leave it and implement a complete solution ... 
 # ... below it
 
 def decToBin(n, cache=''):
@@ -33,5 +33,5 @@ def decToBinComplete(n):
         return decToBin(int(n))
         
         
-print(decToBinComplete(4.199951171875))
+print(decToBinComplete(5000.75))
 

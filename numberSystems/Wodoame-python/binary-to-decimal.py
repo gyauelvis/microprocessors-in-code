@@ -22,4 +22,4 @@ def binToDec(n):
             decimalResult += int(digit) * (2 ** placeValue) 
             placeValue -= 1 # decrement the place value by 1 for the next number
     return decimalResult
-print(binToDec(100.0011001100110))
+print(binToDec(1001110001000.1100))
