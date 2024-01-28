@@ -14,6 +14,7 @@ def binToDec(n):
         # ... decimal point is not a number so we have to subtract 1 from the index to ... 
         # ... get the place value of the first number
     else: 
+        # Otherwise the place value of the first number is just the length of the string minus 1 
         placeValue = len(n) - 1
     for digit in n: 
         if digit != '.': 
@@ -21,4 +22,4 @@ def binToDec(n):
             decimalResult += int(digit) * (2 ** placeValue) 
             placeValue -= 1 # decrement the place value by 1 for the next number
     return decimalResult
-# print(binToDec(101)) output: 5
+print(binToDec(100.0011001100110))
