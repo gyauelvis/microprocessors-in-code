@@ -21,7 +21,7 @@ public:
 
 void numberConverter::toArray(int outlaw)
 {
-    std::unordered_map<char, int> hexNumberMap=;
+    std::unordered_map<char, int> hexNumberMap;
     hexNumberMap.insert(std::pair<char, int>('A', 10));
     hexNumberMap.insert(std::pair<char, int>('B', 11));
     hexNumberMap.insert(std::pair<char, int>('C', 12));
