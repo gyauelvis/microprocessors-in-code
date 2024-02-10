@@ -21,8 +21,13 @@ public:
 
 void numberConverter::toArray(int outlaw)
 {
-    std::unordered_map<char, int> hexNumberMap={{10, 'A'},{11, 'B'},{12, 'C'},{13, 'D'}, {14, 'E'}, {15, 'F'}};
-   
+    std::unordered_map<char, int> hexNumberMap=;
+    hexNumberMap.insert(std::pair<char, int>('A', 10));
+    hexNumberMap.insert(std::pair<char, int>('B', 11));
+    hexNumberMap.insert(std::pair<char, int>('C', 12));
+    hexNumberMap.insert(std::pair<char, int>('D', 13));
+    hexNumberMap.insert(std::pair<char, int>('E', 14));
+    hexNumberMap.insert(std::pair<char, int>('F', 15));
     std::string num = number;
     for (int i = 0; i < static_cast<int>(num.length()); i++)
     {
